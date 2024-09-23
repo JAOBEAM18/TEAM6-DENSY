@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import Head from 'next/head';
+import Head from "next/head";
 import "./globals.css";
 import "./globalicons.css";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -29,14 +30,35 @@ export default function RootLayout({
     <html lang="en">
       <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
+          rel="stylesheet"
+        />
       </Head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
       </body>
+      <Tabs defaultValue="details">
+        <TabsList>
+          <TabsTrigger value="details">
+            <span className="material-symbols-outlined mr-2">data_info_alert</span>
+            Details
+          </TabsTrigger>
+          <TabsTrigger value="reports">
+            <span className="material-symbols-outlined mr-2">Campaign</span>
+            Reports
+          </TabsTrigger>
+        </TabsList>
+        <TabsContent value="details">Test Details.</TabsContent>
+        <TabsContent value="reports">Test Reports.</TabsContent>
+      </Tabs>
     </html>
   );
 }
